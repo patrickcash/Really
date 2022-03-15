@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -8,7 +8,6 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
-
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -20,7 +19,7 @@ const App = () => {
     <Provider store={store}>
       <Navbar />
       <Router>
-        <Switch>
+        <Routes>
             <Route exact path='/' component={Home} />
             <Route exact path='/about' component={About} />
             <Route exact path='/contact' component={Contact} />
@@ -29,7 +28,7 @@ const App = () => {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={SignUp} />
             <Route component={NotFound} />
-        </Switch>
+        </Routes>
       </Router>
     </Provider>
   );
