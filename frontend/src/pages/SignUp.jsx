@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
@@ -6,6 +7,8 @@ export const SignUp = (props) => {
     <div>SignUp</div>
   )
 }
+
+SignUp.propTypes = {}
 
 const mapStateToProps = (state) => ({})
 
