@@ -17,17 +17,17 @@ import './sass/main.scss'
 const App = () => {
   return (
     <Provider store={store}>
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/about' component={About} />
-            <Route exact path='/contact' component={Contact} />
-            <Route exact path='/listings' component={Listings} />
-            <Route exact path='/listings/:id' component={ListingDetail} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={SignUp} />
-            <Route component={NotFound} />
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/about' element={<About />} />
+            <Route exact path='/contact' element={<Contact />} />
+            <Route exact path='/listings' element={<Listings />} />
+            <Route exact path='/listings/:id' element={<ListingDetail />} />
+            <Route exact path='/login' element={<Login />} />
+            <Route exact path='/signup' element={<SignUp />} />
+            <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
     </Provider>
