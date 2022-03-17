@@ -1,19 +1,25 @@
 import axios from 'axios';
+ import Cookies from 'universal-cookie';
 import { setAlert } from './alert';
 import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
 
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+//axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.withCredentials = true;
+const cookies = new Cookies();
 
 export const login = (email, password) =>  async dispatch => {
     const config = {
         headers: {
-            'Content-Type': 'applications/json'
+            'Content-Type': 'application/json',
+            'X-CSRFToken': cookies.get('csrftoken')
         }
     };
 
     const body = JSON.stringify({ email, password});
 
     try{
-        const res = await axios.post('http://localhost:8000/api/token/', body, config);
+        const res = await axios.post('http://127.0.0.1:8000/api/token/', body, config);
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -26,21 +32,22 @@ export const login = (email, password) =>  async dispatch => {
             type: LOGIN_FAIL
         });
 
-        dispatch(setAlert('Error Authenticating', 'error'));
+        dispatch(setAlert(`Error Authenticating: ${err}]`, 'error'));
     }
 };
 
 export const signup = ({ name, email, password, password2 }) => async dispatch => {
     const config = {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-CSRFToken': cookies.get('csrftoken')
         }
     }
 
     const body = JSON.stringify({ name, email, password, password2 }); 
 
     try {
-        const res = await axios.post('http://localhost:8000/api/accounts/signup', body, config);
+        const res = await axios.post('http://127.0.0.1:8000/api/accounts/signup', body, config);
 
         dispatch({
             type: SIGNUP_SUCCESS,
@@ -53,12 +60,12 @@ export const signup = ({ name, email, password, password2 }) => async dispatch =
             type: SIGNUP_FAIL
         });
 
-        dispatch(setAlert('Error Signing up', 'error'));
+        dispatch(setAlert(`Error Signing up: ${err}`, 'error'));
     }
 };
 
 export const logout = () => dispatch => {
-    dispatch(setAlert('logout successful.', 'success'));
+    dispatch(setAlert('Logout successful.', 'success'));
     dispatch({ type: LOGOUT });
 }
 
