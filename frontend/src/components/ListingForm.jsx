@@ -33,7 +33,7 @@ function ListingForm({ setListings }) {
         };
 
         setLoading(true);
-        axios.post(`http://127.0.0.1/api/listings/search`, { sale_type, price, bedrooms, home_type, bathrooms, sqft, days_listed, has_photos, open_house, keywords }, config)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/listings/search`, { sale_type, price, bedrooms, home_type, bathrooms, sqft, days_listed, has_photos, open_house, keywords }, config)
         .then(res => {
             setLoading(false);
             setListings(res.data);
