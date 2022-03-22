@@ -21,7 +21,13 @@ function ListingForm({ setListings }) {
 
     const [loading, setLoading] = useState(false);
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e => {
+        if(e.target.name === 'open_house'){
+            setFormData({ ...formData, [e.target.name]: e.target.checked.toString() });
+        }else{
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
+    };
 
     const onSubmit = e => {
         e.preventDefault();
@@ -148,7 +154,7 @@ function ListingForm({ setListings }) {
                     </div>
                     <div className='listingform__altsection'>
                         <input className='listingform__checkbox' name='open_house' type='checkbox' onChange={e => onChange(e)} value={open_house} />
-                        <label className='listingform__label' htmlFor='open_house'>Open Houses</label>
+                        <label className='listingform__label' htmlFor='open_house'>Open House</label>
                     </div>
                 </div>
 

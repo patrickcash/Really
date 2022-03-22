@@ -29,7 +29,7 @@ export default function Listings({ listings }) {
         // put them in the grid with three columns
         for (let i = 0; i < listings.length; i += 3) {
             result.push(
-                <div className='row'>
+                <div className='row' key={`listing_${i}`}>
                     <div className='col-1-of-3'>
                         {listingsOnPage[i]}
                     </div>

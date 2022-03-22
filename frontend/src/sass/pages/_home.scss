@@ -14,11 +14,16 @@
         margin-bottom: 6rem;
     }
 
+    &__label {
+        font-size: 1.8rem;
+        color: $color-primary;
+    }
+
     &__select {
         font-size: 1.6rem;
-        width: 100%;
+        width: 5rem;
         height: 3rem;
         outline: none;
-        margin-bottom: 1.5rem;
+        margin: 1.5rem;
     }
 }

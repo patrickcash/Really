@@ -50,11 +50,10 @@ export default function Home() {
         <Listings listings={currentListings} />
       </section>
       <section className='home__pagination'>
-        <div className='row'>
-          {
-            listings.length !== 0 ? (
-              <>
-                <Pagination
+        {
+          listings.length !== 0 ? (
+            <div className='row'>
+              <Pagination
                 itemsPerPage={listingsPerPage}
                 count={listings.length}
                 visitPage={visitPage}
@@ -64,9 +63,9 @@ export default function Home() {
                 setActive={setActive}
               />
               <div>
-                <label htmlFor='listingPerPage'>Listings Per Page</label>
+                <label className='home__label' htmlFor='listingPerPage'>Listings Per Page</label>
                 <select className='home__select' name='listingPerPage' onChange={
-                     e => setListingsPerPage(parseInt(e.target.value))
+                    e => setListingsPerPage(parseInt(e.target.value))
                   } value={listingsPerPage}>
                   <option>3</option>
                   <option>6</option>
@@ -75,10 +74,9 @@ export default function Home() {
                   <option>15</option>
                 </select>
               </div>
-              </>
-            ) : null
-          }
-        </div>
+              </div>
+          ) : null
+        }        
       </section>
     </main>
   );

@@ -24,24 +24,24 @@ class SearchView(APIView):
     def post(self, request, format=None):
         queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
         data = self.request.data
-
+        
         sale_type = data['sale_type']
         queryset = queryset.filter(sale_type__iexact=sale_type)
-
+        
         price = data['price']
         if price != 'Any':
             price = int(price.replace('$', '').replace('+', '').replace(',', ''))
             queryset = queryset.filter(price__gte=price)
         
+        home_type = data['home_type']
+        queryset = queryset.filter(home_type__iexact=home_type)
+        
         bedrooms = data['bedrooms']
         bedrooms = int(bedrooms.replace('+', ''))
         queryset = queryset.filter(bedrooms__gte=bedrooms)
-
-        home_type = data['home_type']
-        queryset = queryset.filter(home_type__iexact=home_type)
-
+        
         bathrooms = data['bathrooms']
-        bathrooms = int(nathrooms.replace('+', ''))
+        bathrooms = int(bathrooms.replace('+', ''))
         queryset = queryset.filter(bathrooms__gte=bathrooms)
         
         sqft = data['sqft']
@@ -49,9 +49,9 @@ class SearchView(APIView):
             sqft = int(sqft.replace('+', ''))
             queryset = queryset.filter(sqft__gte=sqft)
         
-        days_passed = data['days_listed']
+        days_passed = data['days_listed'].split()[0]        
         if days_passed != 'Any':
-            days_passed = int(days_passed())
+            days_passed = int(days_passed)
             
             for query in queryset:
                 num_days = (datetime.now(timezone.utc) - query.list_date).days
@@ -72,13 +72,13 @@ class SearchView(APIView):
             if count < has_photos:
                 slug = query.slug
                 queryset = queryset.exclude(slug__iexact=slug)
-
+        
         open_house = data['open_house']
         queryset = queryset.filter(open_house__iexact=open_house)
-
+        
         keywords = data['keywords']
         queryset = queryset.filter(description__icontains=keywords)
-
+        
         serializer = ListingSerializer(queryset, many=True)
 
         return Response(serializer.data)
