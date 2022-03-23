@@ -8,11 +8,13 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
+import PrivateRoute from './components/PrivateRoute';
 
 import { Provider } from 'react-redux';
 import store from './store';
 
 import './sass/main.scss'
+
 
 const App = () => {
   return (
@@ -24,7 +26,9 @@ const App = () => {
             <Route exact path='/about' element={<About />} />
             <Route exact path='/contact' element={<Contact />} />
             <Route exact path='/listings' element={<Listings />} />
-            <Route exact path='/listings/:id' element={<ListingDetail />} />
+            <Route element={<PrivateRoute />}>
+              <Route exact path='/listings/:id' element={<ListingDetail />} />
+            </Route>
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/signup' element={<SignUp />} />
             <Route path='*' element={<NotFound />} />
