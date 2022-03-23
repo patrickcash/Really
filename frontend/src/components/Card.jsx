@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
+import { addCommasToNumber } from '../utils/numberUtils';
 
 function Card(props) {
-    const addCommasToNumber = (num) => {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    };
+    
 
     return (
         <div className='card'>

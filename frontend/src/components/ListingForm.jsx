@@ -76,7 +76,7 @@ function ListingForm({ setListings }) {
 
                 <div className='col-1-of-6'>
                     <div className='listingform__section'>
-                        <label className='listingform__label' htmlFor='price'>Minimum Price</label>
+                        <label className='listingform__label' htmlFor='price'>Price</label>
                         <select className='listingform__select' name='price' onChange={e => onChange(e)} value={price}>
                             <option>$0+</option>
                             <option>$200,000+</option>
@@ -115,7 +115,7 @@ function ListingForm({ setListings }) {
                         </select>
                     </div>
                     <div className='listingform__section'>
-                        <label className='listingform__label' htmlFor='has_photos'>Has Photos</label>
+                        <label className='listingform__label' htmlFor='has_photos'>Photos</label>
                         <select className='listingform__select' name='has_photos' onChange={e => onChange(e)} value={has_photos}>
                             <option>1+</option>
                             <option>3+</option>
