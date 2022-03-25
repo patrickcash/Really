@@ -4,7 +4,8 @@ Real Estate listings app
 
 ## Tech stack
 
-React and Redux frontend with Django Rest Framework backend
+React and Redux frontend with SASS styling
+Django with Django Rest Framework backend
 
 ## Running the app
 
@@ -14,7 +15,7 @@ In the backend directory
 
 Activate the python virtual environment by running `Pipenc shell`
 
-Run `python manage.py` to run the backend Django server 
+Run `python manage.py runserver` to run the backend Django server 
 
 ### Frontend
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
- import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie';
+
 import { setAlert } from './alert';
 import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
 

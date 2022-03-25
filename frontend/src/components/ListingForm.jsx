@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'
 import axios from 'axios';
 import { Grid } from 'react-loader-spinner';
-import PropTypes from 'prop-types'
 
 function ListingForm({ setListings }) {
     const [formData, setFormData] = useState({
