@@ -4,7 +4,6 @@ import { setAlert } from './alert';
 import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
 
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-//axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
 

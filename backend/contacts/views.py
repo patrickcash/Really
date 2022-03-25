@@ -1,6 +1,7 @@
 from rest_framework import permissions
 from rest_framework.views import APIView
 from .models import Contact
+from django.conf import settings
 from django.core.mail import send_mail
 from rest_framework.response import Response
 
@@ -19,8 +20,8 @@ class ContactCreateView(APIView):
                 + data['email']
                 + '\n\nMessage:\n'
                 + data['message'],
-                '[YOUR SENDER EMAIL FROM YOUR SETTINGS]',
-                ['[EMAIL YOU ARE SENDING TO]'],
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_HOST_USER],
                 fail_silently=False
             )
 
@@ -30,4 +31,5 @@ class ContactCreateView(APIView):
             return Response({'success': 'Message sent successfully'})
 
         except:
+            
             return Response({'error': 'Message failed to send'})
