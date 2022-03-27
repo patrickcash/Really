@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+import os
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_value(env_variable):
+    try:
+      	return os.environ[env_variable]
+    except KeyError:
+        error_msg = 'Set the {} environment variable'.format(var_name)
+        raise ImproperlyConfigured(error_msg)
+    
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--1$*zw2rjn0n(wvo=0qu@s6n1^a$33h3+tozvvs42$c_n(+g@b'
+SECRET_KEY = get_env_value('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,18 +95,18 @@ WSGI_APPLICATION = 'really.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'really_estate',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost'
+        'NAME': get_env_value('DATABASE_NAME'),
+        'USER': get_env_value('DATABASE_USER'),
+        'PASSWORD': get_env_value('DATABASE_PASSWORD'),
+        'HOST': get_env_value('DATABASE_HOST'),
     }
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '[YOUR EMAIL]'
-EMAIL_HOST_PASSWORD = '[YOUR APP PASSWORD]'
+EMAIL_HOST_USER = get_env_value('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = get_env_value('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
 # Password validation
