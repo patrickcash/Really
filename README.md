@@ -11,15 +11,11 @@ Django with Django Rest Framework backend
 
 ### Backend
 
-In the backend directory
-
-Activate the python virtual environment by running `Pipenc shell`
+Activate the python virtual environment by running `Pipenv shell`
 
 Run `python manage.py runserver` to run the backend Django server 
 
 ### Frontend
-
-In the project directory, you can run:
 
 #### `npm start`
 
