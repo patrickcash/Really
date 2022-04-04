@@ -6,12 +6,12 @@ import { Grid } from 'react-loader-spinner';
 function ListingForm({ setListings }) {
     const [formData, setFormData] = useState({
         sale_type: 'For Sale',
-        price: '$0+',
+        price: 'Any',
         bedrooms: '0+',
         home_type: 'House',
         bathrooms: '0+',
-        sqft: '1000+',
-        days_listed: '1 or less',
+        sqft: 'Any',
+        days_listed: 'Any',
         has_photos: '1+',
         open_house: 'false',
         keywords: ''
