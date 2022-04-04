@@ -65,11 +65,11 @@ function ListingForm({ setListings }) {
                     <div className='listingform__section'>
                         <label className='listingform__label' htmlFor='sqft'>Sqft</label>
                         <select className='listingform__select' name='sqft' onChange={e => onChange(e)} value={sqft}>
+                            <option>Any</option>
                             <option>1000+</option>
                             <option>1200+</option>
                             <option>1500+</option>
-                            <option>2000+</option>
-                            <option>Any</option>
+                            <option>2000+</option>                            
                         </select>
                     </div>
                 </div>
@@ -78,6 +78,7 @@ function ListingForm({ setListings }) {
                     <div className='listingform__section'>
                         <label className='listingform__label' htmlFor='price'>Price</label>
                         <select className='listingform__select' name='price' onChange={e => onChange(e)} value={price}>
+                            <option>Any</option>
                             <option>$0+</option>
                             <option>$200,000+</option>
                             <option>$400,000+</option>
@@ -86,18 +87,17 @@ function ListingForm({ setListings }) {
                             <option>$1,000,000+</option>
                             <option>$1,200,000+</option>
                             <option>$1,500,000+</option>
-                            <option>Any</option>
                         </select>
                     </div>
                     <div className='listingform__section'>
                         <label className='listingform__label' htmlFor='days_listed'>Days Listed</label>
                         <select className='listingform__select' name='days_listed' onChange={e => onChange(e)} value={days_listed}>
+                            <option>Any</option>
                             <option>1 of less</option>
                             <option>2 of less</option>
                             <option>5 of less</option>
                             <option>10 of less</option>
                             <option>20 of less</option>
-                            <option>Any</option>
                         </select>
                     </div>
                 </div>
