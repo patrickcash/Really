@@ -14,6 +14,9 @@ from pathlib import Path
 
 import dj_database_url
 
+import cloudinary
+import cloudinary_storage
+
 import os
 from django.core.exceptions import ImproperlyConfigured
 
@@ -51,6 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
     'corsheaders',
     'rest_framework',
     'accounts',
@@ -150,14 +155,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath('build/static')
+    BASE_DIR / 'build/static'
 ]
-STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_ROOT = BASE_DIR / MEDIA_URL
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR.joinpath('media')
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': get_env_value('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': get_env_value('CLOUDINARY_API_KEY'),
+    'API_SECRET': get_env_value('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
