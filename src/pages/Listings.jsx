@@ -10,6 +10,7 @@ export default function Listings() {
   const [previous, setPrevious] = useState('');
   const [next, setNext] = useState('');
   const [active, setActive] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -127,9 +128,11 @@ export default function Listings() {
                 {displayListings()}
             </section>
             <section className='listings__pagination'>
+                {listings.length > itemsPerPage ?
+                (
                 <div className='row'>
                     <Pagination
-                        itemsPerPage={10}
+                        itemsPerPage={itemsPerPage}
                         count={count}
                         visitPage={visitPage}
                         previous={previous_number}
@@ -137,7 +140,7 @@ export default function Listings() {
                         active={active}
                         setActive={setActive}
                     />
-                </div>
+                </div>) : null }
             </section>
         </main>
   )
