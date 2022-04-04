@@ -3,7 +3,6 @@
     margin: 0 auto;
 
     @include respond(big-desktop) {
-        min-width: $grid-width;
         max-width: none;
         margin-left: 5%;
         margin-right: 5%;
